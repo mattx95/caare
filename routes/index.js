@@ -62,7 +62,7 @@ router.get('/medical', function(req, res, next) {
     	return res.redirect('/');
   }else{
     var id = req.query.id;
-    console.log(id);
+    // console.log(id);
     pool.query("SELECT * FROM Patient_Medical_Info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
     // console.log(dbres.fields[0]);
@@ -83,7 +83,7 @@ router.get('/checkuphistory', function(req, res, next) {
     	return res.redirect('/');
   }else{
     var id = req.query.id;
-    console.log(id);
+    // console.log(id);
     pool.query("SELECT * FROM checkup_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
 
@@ -91,11 +91,23 @@ router.get('/checkuphistory', function(req, res, next) {
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
     }
-    console.log(dbres);
+    // console.log(dbres);
   res.render('checkuphistory', {id:id, title: dbres.rows[0].lastname, info: dbres.rows, fields: fields });
   })
 
     }
 });
+
+
+router.get('/newcheckup', function(req,res,next){
+
+  res.render('tbi');
+})
+
+router.get('/newpatient', function(req,res,next){
+
+  res.render('tbi');
+})
+
 
 module.exports = router;
