@@ -34,10 +34,10 @@ router.get('/personal', function(req, res, next) {
     	return res.redirect('/');
   }else{
     var id = req.query.id;
-    console.log(id);
+    // console.log(id);
     pool.query("SELECT * FROM patient_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
-    console.log(dbres.rows.length == 0);
+    // console.log(dbres.rows.length == 0);
     if (dbres.rows.length > 0){
     var fields = [];
     for (f in dbres.fields){
