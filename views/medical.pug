@@ -1,0 +1,12 @@
+extends frame
+
+block content
+  .container.p-t-1.m-y-1
+    h1.display-4.text-xs-center.m-y-3.text-muted Medical Information
+    include infonav
+    .row
+      for item in info
+        .col-md-6.col-lg-3
+          .card.card-block
+            h3.display-4.infoHeader #{item}
+            p.lead.text-muted #{fields.shift()}

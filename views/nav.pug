@@ -1,0 +1,13 @@
+nav.navbar.navbar-fixed-top.navbar-light.bg-faded
+  a.navbar-brand(href="http://www.caareinc.org") caareinc
+  ul.nav.navbar-nav
+    li.nav-item.active
+      a.nav-link(href="/") Patient Database
+        span.sr-only current
+    li.nav-item
+      a.nav-link(href="/newpatient") New Patient
+    li.nav-item
+      a.nav-link(href="/newcheckup") New Checkup
+  form.form-inline.pull-xs-right(action="/personal" method ="get")
+    input.form-control(name ="id" type="text" placeholder="Enter ID")
+    input.btn.btn-outline-primary(type = "submit" value ="Search")

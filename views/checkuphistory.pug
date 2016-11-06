@@ -1,0 +1,17 @@
+extends frame
+
+block content
+  .container.p-t-1.m-y-1
+    h1.display-4.text-xs-center.m-y-3.text-muted Checkup History
+    include infonav
+  .container-fluid
+    .table-responsive
+      table.table.table-hover.table-striped
+        thead.thead-inverse
+          tr
+            for heading in fields
+              th #{heading}
+          for row in info
+            tr
+              for item in row
+                td #{item}
