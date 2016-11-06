@@ -2,26 +2,30 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 var Pool = require('pg').Pool;
+
+// Not super secure at the moment. Will switch to environmenttal variables later on.
+pg.defaults.ssl = true;
 var config = {
-  user: 'caareuser', //env var: PGUSER
-  database: 'caaredb', //env var: PGDATABASE
-  password: 'cs316', //env var: PGPASSWORD
-  port: 5432, //env var: PGPORT
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+  user: 'zwvaworjsyflcb',
+  database: 'dabucp2i60ed53',
+  host: 'ec2-23-23-176-135.compute-1.amazonaws.com',
+  password: 'D_pVMDMHWpUAiO0sY2yhj8j_mx',
+  port: 5432,
+  max: 10,
+  idleTimeoutMillis: 30000,
 };
 var pool = new Pool(config)
 
 
 
 
-/* GET home page. */
+/* GET home page. List all patients */
 
 router.get('/', function(req, res, next) {
 
 
     pool.query("SELECT * FROM Patient_Info", function (err, dbres) {
-      // console.log(dbres);
+      // console.log(err);
     var fields = [];
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
@@ -30,6 +34,9 @@ router.get('/', function(req, res, next) {
   })
 
 });
+
+
+// Patient personal info
 router.get('/personal', function(req, res, next) {
   var id = req.query.id;
   console.log(parseInt(id));
@@ -60,6 +67,8 @@ router.get('/personal', function(req, res, next) {
 })
 }});
 
+//Patient Medical Info
+
 router.get('/medical', function(req, res, next) {
   if(req.query.id == null){
     	return res.redirect('/');
@@ -80,7 +89,7 @@ router.get('/medical', function(req, res, next) {
 });
 
 
-
+// List check up history of patients
 router.get('/checkuphistory', function(req, res, next) {
   if(req.query.id == null){
     	return res.redirect('/');
