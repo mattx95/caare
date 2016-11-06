@@ -14,7 +14,7 @@ var config = {
   max: 10,
   idleTimeoutMillis: 30000,
 };
-var pool = new Pool(config)
+var pool = new Pool(DATABASE_URL);
 
 
 
