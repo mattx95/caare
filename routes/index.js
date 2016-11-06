@@ -20,7 +20,7 @@ var pool = new Pool(config)
 router.get('/', function(req, res, next) {
 
 
-    pool.query("SELECT * FROM patient_info", function (err, dbres) {
+    pool.query("SELECT * FROM Patient_Info", function (err, dbres) {
       // console.log(dbres);
     var fields = [];
     for (f in dbres.fields){
@@ -31,20 +31,23 @@ router.get('/', function(req, res, next) {
 
 });
 router.get('/personal', function(req, res, next) {
-  if(req.query.id == null){
+  var id = req.query.id;
+  console.log(parseInt(id));
+  if(!Number.isInteger(parseInt(id))){
     	return res.redirect('/');
   }else{
     var id = req.query.id;
     // console.log(id);
     pool.query("SELECT * FROM patient_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
+    // console.log(dbres);
     if (dbres.rows.length > 0){
     var fields = [];
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
     }
     // console.log(fields);
-    res.render('personal', {id:id, title: dbres.rows[0].lastname, info: dbres.rows[0], fields: fields });
+    res.render('personal', {id:id,  info: dbres.rows[0], fields: fields });
   } else{
     pool.query("SELECT * FROM patient_info", function (err, dbres) {
     var fields = [];
@@ -70,8 +73,8 @@ router.get('/medical', function(req, res, next) {
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
     }
-    // console.log(fields);
-    res.render('medical', { id:id,title: dbres.rows[0].lastname, info: dbres.rows[0], fields: fields });
+    console.log(dbres.rows[0]);
+    res.render('medical', { id:id, info: dbres.rows[0], fields: fields });
   })
 }
 });
@@ -92,7 +95,7 @@ router.get('/checkuphistory', function(req, res, next) {
       fields.push(dbres.fields[f].name);
     }
     // console.log(dbres);
-  res.render('checkuphistory', {id:id, title: dbres.rows[0].lastname, info: dbres.rows, fields: fields });
+  res.render('checkuphistory', {id:id, info: dbres.rows, fields: fields });
   })
 
     }
