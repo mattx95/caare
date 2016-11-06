@@ -4,7 +4,7 @@ var pg = require('pg');
 var Pool = require('pg').Pool;
 var config = {
   user: 'caareuser', //env var: PGUSER
-  database: 'caare', //env var: PGDATABASE
+  database: 'caaredb', //env var: PGDATABASE
   password: 'cs316', //env var: PGPASSWORD
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
@@ -20,7 +20,7 @@ var pool = new Pool(config)
 router.get('/', function(req, res, next) {
 
 
-    pool.query("SELECT * FROM patientinfo", function (err, dbres) {
+    pool.query("SELECT * FROM patient_info", function (err, dbres) {
     var fields = [];
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
@@ -35,7 +35,7 @@ router.get('/personal', function(req, res, next) {
   }else{
     var id = req.query.id;
     console.log(id);
-    pool.query("SELECT * FROM patientinfo WHERE patientid = '" + id + "'", function (err, dbres) {
+    pool.query("SELECT * FROM patient_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
     console.log(dbres.rows.length == 0);
     if (dbres.rows.length > 0){
@@ -46,7 +46,7 @@ router.get('/personal', function(req, res, next) {
     // console.log(fields);
     res.render('personal', {id:id, title: dbres.rows[0].lastname, info: dbres.rows[0], fields: fields });
   } else{
-    pool.query("SELECT * FROM patientinfo", function (err, dbres) {
+    pool.query("SELECT * FROM patient_info", function (err, dbres) {
     var fields = [];
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
@@ -63,7 +63,7 @@ router.get('/medical', function(req, res, next) {
   }else{
     var id = req.query.id;
     console.log(id);
-    pool.query("SELECT * FROM PatientMedicalInfo WHERE patientid = '" + id + "'", function (err, dbres) {
+    pool.query("SELECT * FROM Patient_Medical_Info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
     // console.log(dbres.fields[0]);
     var fields = [];
@@ -84,7 +84,7 @@ router.get('/checkuphistory', function(req, res, next) {
   }else{
     var id = req.query.id;
     console.log(id);
-    pool.query("SELECT * FROM checkupinfo WHERE patientid = '" + id + "'", function (err, dbres) {
+    pool.query("SELECT * FROM checkup_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
 
     var fields = [];
