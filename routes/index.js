@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
 
 
     pool.query("SELECT * FROM patient_info", function (err, dbres) {
+      // console.log(dbres);
     var fields = [];
     for (f in dbres.fields){
       fields.push(dbres.fields[f].name);
@@ -37,7 +38,6 @@ router.get('/personal', function(req, res, next) {
     // console.log(id);
     pool.query("SELECT * FROM patient_info WHERE patient_id = '" + id + "'", function (err, dbres) {
     if (err) console.log(err)
-    // console.log(dbres.rows.length == 0);
     if (dbres.rows.length > 0){
     var fields = [];
     for (f in dbres.fields){
