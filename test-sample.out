@@ -1,0 +1,39 @@
+SELECT * FROM Patient_Info;
+ patient_id | first_name  | last_name |    dob     | height | weight | gender |                allergies                 |                     med_history                     
+------------+-------------+-----------+------------+--------+--------+--------+------------------------------------------+-----------------------------------------------------
+          1 | George      | Phillips  | 2016-04-07 |     74 |     88 | Male   | rhoncus aliquam lacus                    | Multi-channelled clear-thinking initiative
+          2 | Sara        | George    | 1958-11-17 |     99 |     40 | Female | in ante vestibulum                       | Fully-configurable leading edge capability
+          3 | Maria       | Williams  | 2016-04-19 |     93 |      2 | Female | tellus nisi eu                           | Organic static algorithm
+          4 | Eric        | Snyder    | 2003-12-22 |    100 |     63 | Male   | et ultrices posuere                      | Universal system-worthy leverage
+          5 | Brenda      | Pierce    | 1986-11-16 |     56 |     30 | Female | nulla                                    | Cross-group zero tolerance Graphical User Interface
+          6 | Melissa     | Gomez     | 1996-05-08 |     25 |     60 | Female | mollis molestie lorem quisque ut         | Intuitive next generation portal
+          7 | Christopher | Oliver    | 1981-12-19 |     88 |     49 | Male   | enim in tempor                           | Assimilated analyzing parallelism
+          8 | Marie       | Woods     | 1966-08-19 |     33 |      7 | Female | parturient montes nascetur ridiculus mus | Synergistic systemic challenge
+          9 | Judith      | Wagner    | 2006-11-13 |     29 |     60 | Female | et magnis dis parturient montes          | Devolved fault-tolerant encryption
+         10 | Arthur      | Owens     | 2005-04-09 |     52 |     66 | Male   | donec pharetra magna vestibulum          | User-centric static open system
+         11 | Katherine   | Bryant    | 1997-10-29 |     42 |     76 | Female | ullamcorper augue                        | Automated next generation data-warehouse
+         12 | Pamela      | Mcdonald  | 1986-03-06 |     85 |     13 | Female | sociis natoque penatibus                 | Multi-tiered optimal portal
+         13 | Steven      | Edwards   | 1962-09-13 |     65 |     73 | Male   | volutpat quam pede lobortis ligula       | Multi-lateral hybrid neural-net
+         14 | Jesse       | Chapman   | 2009-07-25 |     44 |     72 | Male   | pharetra magna ac consequat              | Business-focused regional software
+         15 | Beverly     | Snyder    | 1976-05-26 |     46 |     86 | Female | pulvinar sed nisl nunc                   | Right-sized high-level archive
+(15 rows)
+
+SELECT * FROM patient_info WHERE patient_id = '01';
+ patient_id | first_name | last_name |    dob     | height | weight | gender |       allergies       |                med_history                 
+------------+------------+-----------+------------+--------+--------+--------+-----------------------+--------------------------------------------
+          1 | George     | Phillips  | 2016-04-07 |     74 |     88 | Male   | rhoncus aliquam lacus | Multi-channelled clear-thinking initiative
+(1 row)
+
+SELECT * FROM Patient_Medical_Info WHERE patient_id ='01';
+ patient_id | current_bmi | current_blood_pressure | current_heart_rate | current_breathing_patterns | current_blood_glucose_levels | current_a1cs | current_medication 
+------------+-------------+------------------------+--------------------+----------------------------+------------------------------+--------------+--------------------
+          1 |       1.720 |                     52 |                  7 | accumsan                   |                           74 |           74 | pharetra
+(1 row)
+
+SELECT * FROM checkup_info WHERE patient_id = '01';
+ patient_id |    date    | height | weight | bmi_change | blood_pressure | blood_pressure_change | heart_rate | breathing_patterns | blood_glucose_levels | glucose_change | a1cs | current_medication 
+------------+------------+--------+--------+------------+----------------+-----------------------+------------+--------------------+----------------------+----------------+------+--------------------
+          1 | 1998-10-10 |     17 |    100 |         38 |              3 |                       |            | vivamus            |                   48 |             40 |      | vitae
+          1 | 1932-02-22 |     21 |     65 |         47 |             85 |                    37 |         73 | sollicitudin       |                   66 |             17 |      | eleifend
+(2 rows)
+

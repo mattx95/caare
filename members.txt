@@ -1,0 +1,6 @@
+Member: Matt Alston, Lok Chan, Nisarg Shah, Devesh Sharma 
+Effort Made:
+Matt Alston: Project description
+Lok Chan: Web server
+Nisarg Shah: SQL code
+Devesh Sharma: E/R diagram and Relational Schema

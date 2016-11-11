@@ -1,3 +1,5 @@
+The database was generated as follows. The data was obtained through a random data generating web app: https://www.mockaroo.com/. Due to issues pertaining patient confidentiality, we will not be using actual data.
+
 CREATE TABLE Patient_Info(patient_id INT NOT NULL PRIMARY KEY, first_name VARCHAR(20), Last_Name VARCHAR(20), DOB DATE, HEIGHT INT, WEIGHT INT, GENDER VARCHAR(20), ALLERGIES TEXT, Med_History TEXT);
 
 CREATE TABLE Patient_Medical_Info(Patient_ID INT NOT NULL PRIMARY KEY, Current_BMI NUMERIC(7,3), Current_Blood_Pressure INT, Current_Heart_Rate INT, Current_Breathing_Patterns VARCHAR(20), Current_Blood_Glucose_Levels INT, Current_A1Cs INT, Current_Medication VARCHAR(20));
